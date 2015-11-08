@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['txt_class'])) {
         if ($new) {
             $testObject = ParseObject::create("YogaObject");
             $testObject->set("username", $_SESSION['txt_user']);
-            $testObject->set("classname", md5($_POST['txt_class']));
+            $testObject->set("classname", $_POST['txt_class']);
             $testObject->set("colA", $_POST['txt_col1']);
             $testObject->set("colB", $_POST['txt_col2']);
             $testObject->set("colC", $_POST['txt_col3']);
@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['txt_class'])) {
 
 if (isset($_SESSION['username'])) {
     $query = new ParseQuery("YogaObject");
-    $query->equalTo("username", $_SESSION['txt_user']);
+    $query->equalTo("username", $_SESSION['username']);
     $list = $query->find();
 }
 if (isset($_GET['logout'])){
