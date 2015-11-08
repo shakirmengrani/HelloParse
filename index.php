@@ -51,13 +51,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['txt_class'])) {
     $new = true;
     try {
         $query = new ParseQuery("YogaObject");
-        $query->equalTo("username", $_SESSION['txt_user']);
+        $query->equalTo("username", $_SESSION['username']);
         $data = $query->find();
         if (count($data) > 0) {
             for ($i = 0; $i < count($data); $i++) {
                 $obj = $data[$i];
                 if ($obj->get("classname") == $_POST['txt_class']) {
-                    $new = true;
+                    $new = false;
                     $err = "<h3>Class already created !</h3>";
                 }
             }
@@ -184,7 +184,7 @@ if (isset($_GET['logout'])) {
                     <ul class="nav nav-pills nav-stacked">
                         <?php for ($i = 0; $i < count($list); $i++): ?>
                             <?php $obj = $list[$i]; ?>
-                        <li><a href="#"><?php echo $obj->get("classname"); ?></a> | 
+                        <li><a href="#"><?php echo $obj->get("classname"); ?></a>
                                 <?php echo "<b>Field 1 : </b>" . $obj->get("colA"); ?> | 
                                 <?php echo "<b>Field 2 : </b>" . $obj->get("colB"); ?> | 
                                 <?php echo "<b>Field 3 : </b>" . $obj->get("colC"); ?> | 
