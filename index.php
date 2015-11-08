@@ -216,10 +216,10 @@ if (isset($_GET['logout'])) {
                             <?php $obj = $list[$i]; ?>
                             <li class="thumbnail col-lg-3"><h3><a href="#"><?php echo $obj->get("classname"); ?></a></h3>
                                 <img src="http://placehold.it/200" class="media" />
-                                <?php echo "<b>Field 1 : </b>" . $obj->get("colA"); ?> | 
-                                <?php echo "<b>Field 2 : </b>" . $obj->get("colB"); ?> <br />
-                                <?php echo "<b>Field 3 : </b>" . $obj->get("colC"); ?> | 
-                                <?php echo "<b>Field 4 : </b>" . $obj->get("colD"); ?>
+                                <?php echo "<div class=\"col-lg-2\"><b>Field 1 : </b>" . $obj->get("colA") . "<div>"; ?> | 
+                                <?php echo "<div class=\"col-lg-2\"><b>Field 2 : </b>" . $obj->get("colB") . "<div>"; ?> <br />
+                                <?php echo "<div class=\"col-lg-2\"><b>Field 3 : </b>" . $obj->get("colC") . "<div>"; ?> | 
+                                <?php echo "<div class=\"col-lg-2\"><b>Field 4 : </b>" . $obj->get("colD") . "<div>"; ?>
                             </li>
                         <?php endfor; ?>
                     </ul>
