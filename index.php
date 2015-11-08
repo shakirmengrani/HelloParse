@@ -204,7 +204,7 @@ if (isset($_GET['logout'])) {
                     <ul class="nav nav-pills nav-stacked">
                         <?php for ($i = 0; $i < count($list); $i++): ?>
                             <?php $obj = $list[$i]; ?>
-                            <li><a href="#"><?php echo $obj->get("classname"); ?></a>
+                            <li class="thumbnail"><a href="#"><?php echo $obj->get("classname"); ?></a>
                                 <?php echo "<b>Field 1 : </b>" . $obj->get("colA"); ?> | 
                                 <?php echo "<b>Field 2 : </b>" . $obj->get("colB"); ?> | 
                                 <?php echo "<b>Field 3 : </b>" . $obj->get("colC"); ?> | 
