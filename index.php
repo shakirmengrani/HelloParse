@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['txt_class'])) {
 
 if (isset($_SESSION['username'])) {
     $query = new ParseQuery("YogaObject");
-    $query->equalTo("username", $_POST['txt_user']);
+    $query->equalTo("username", $_SESSION['txt_user']);
     $list = $query->find();
 }
 ?>
