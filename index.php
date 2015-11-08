@@ -225,7 +225,7 @@ if (isset($_GET['logout'])) {
                     <ul class="nav nav-pills nav-stacked" id="row2">
                         <?php for ($i = 0; $i < count($list); $i++): ?>
                             <?php $obj = $list[$i]; ?>
-                            <li><a href="#"><?php echo $obj->get("classname"); ?></a></li>
+                            <li><h3><a href="#"><?php echo $obj->get("classname"); ?></a></h3></li>
                         <?php endfor; ?>
                     </ul>
                 </div>
