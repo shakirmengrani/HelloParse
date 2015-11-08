@@ -172,7 +172,9 @@ if (isset($_GET['logout'])) {
                     #row2{
                         margin-bottom: 100px;
                     }
-
+                    #row2 li{
+                        padding: 5px;
+                    }
                 </style>
                 <div>
                     <h3 class="pull-left">Yoga List</h3>
@@ -214,7 +216,7 @@ if (isset($_GET['logout'])) {
                             <?php $obj = $list[$i]; ?>
                             <li class="thumbnail col-lg-3"><h3><a href="#"><?php echo $obj->get("classname"); ?></a></h3>
                                 <?php echo "<b>Field 1 : </b>" . $obj->get("colA"); ?> | 
-                                <?php echo "<b>Field 2 : </b>" . $obj->get("colB"); ?> | 
+                                <?php echo "<b>Field 2 : </b>" . $obj->get("colB"); ?> <br />
                                 <?php echo "<b>Field 3 : </b>" . $obj->get("colC"); ?> | 
                                 <?php echo "<b>Field 4 : </b>" . $obj->get("colD"); ?>
                             </li>
