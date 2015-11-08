@@ -163,7 +163,8 @@ if (isset($_GET['logout'])) {
                 <style>
 
                     ul li{
-                        margin-top: 100px; 
+                        margin-top: 100px;
+                        margin-bottom: 100px;
                         border: solid thin #ccc;
                         border-radius: 5px;
                     }
