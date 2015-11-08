@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['log_Form'] == true) {
     $data = $query->find();
     for($i =0; $i < count($data);$i++){
         $obj = $data[$i];
-        $err =  "<h3>" . ( $obj->get("username") == md5($_POST['txt_pwd']) ? "Welcome from Parse.com Api" : "In-valid authentication !") . "</h3>";
+        $err =  "<h3>" . ( $obj->get("password") == md5($_POST['txt_pwd']) ? "Welcome from Parse.com Api" : "In-valid authentication !") . "</h3>";
     }
    }catch(Exception $ex){
        $err = $ex->getMessage();
