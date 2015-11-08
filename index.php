@@ -191,7 +191,7 @@ if (isset($_GET['logout'])) {
                                 <input type="text" name="txt_col3" class="form-control" placeholder="Field 3" required /> 
                             </div>
                             <div class="col-lg-6">
-                                 <input type="text" name="txt_col4" class="form-control" placeholder="Field 4" required />    
+                                <input type="text" name="txt_col4" class="form-control" placeholder="Field 4" required />    
                             </div>
                         </div>
                         <br />
@@ -201,15 +201,25 @@ if (isset($_GET['logout'])) {
                             </div>
                         </div>
                     </form>
+                    <h2>Example 1</h2>
+                    <hr />
                     <ul class="row">
                         <?php for ($i = 0; $i < count($list); $i++): ?>
                             <?php $obj = $list[$i]; ?>
-                        <li class="thumbnail col-lg-3"><h3><a href="#"><?php echo $obj->get("classname"); ?></a></h3>
+                            <li class="thumbnail col-lg-3"><h3><a href="#"><?php echo $obj->get("classname"); ?></a></h3>
                                 <?php echo "<b>Field 1 : </b>" . $obj->get("colA"); ?> | 
                                 <?php echo "<b>Field 2 : </b>" . $obj->get("colB"); ?> | 
                                 <?php echo "<b>Field 3 : </b>" . $obj->get("colC"); ?> | 
                                 <?php echo "<b>Field 4 : </b>" . $obj->get("colD"); ?>
                             </li>
+                        <?php endfor; ?>
+                    </ul>
+                    <h2>Example 2</h2>
+                    <hr />
+                    <ul class="nav nav-pills nav-stacked">
+                        <?php for ($i = 0; $i < count($list); $i++): ?>
+                            <?php $obj = $list[$i]; ?>
+                            <li><a href="#"><?php echo $obj->get("classname"); ?></a></li>
                         <?php endfor; ?>
                     </ul>
                 </div>
