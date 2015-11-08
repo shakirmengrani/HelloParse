@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['txt_class'])) {
         }
         if ($new) {
             $testObject = ParseObject::create("YogaObject");
-            $testObject->set("username", $_SESSION['txt_user']);
+            $testObject->set("username", $_SESSION['username']);
             $testObject->set("classname", $_POST['txt_class']);
             $testObject->set("colA", $_POST['txt_col1']);
             $testObject->set("colB", $_POST['txt_col2']);
