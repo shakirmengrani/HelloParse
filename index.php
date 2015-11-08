@@ -79,12 +79,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['txt_class'])) {
 }
 
 if (isset($_SESSION['username'])) {
-    $query = new ParseQuery("YogaObject");
-    $query->equalTo("username", $_SESSION['username']);
-    $list = $query->find();
+    try {
+        $query = new ParseQuery("YogaObject");
+        $query->equalTo("username", $_SESSION['username']);
+        $list = $query->find();
+    } catch (Exception $ex) {
+        $err = $ex->getMessage();
+    }
 }
 if (isset($_GET['logout'])) {
-    $_SESSION['username'] = "";
+    $_SESSION['username'] = null;
 }
 ?>
 <html>
@@ -107,13 +111,13 @@ if (isset($_GET['logout'])) {
                     <form method="post">
                         <div class="row">
                             <div class="col-lg-12">
-                                <input type="text" name="txt_user" class="form-control" placeholder="username" value="" />
+                                <input type="text" name="txt_user" class="form-control" placeholder="username" value="" required />
                             </div>
                         </div>
                         <br />
                         <div class="row">
                             <div class="col-lg-12">
-                                <input type="password" name="txt_pwd" class="form-control" placeholder="password" value="" />
+                                <input type="password" name="txt_pwd" class="form-control" placeholder="password" value="" required />
                             </div>
                         </div>
                         <br />
@@ -131,13 +135,13 @@ if (isset($_GET['logout'])) {
                     <form method="post">
                         <div class="row">
                             <div class="col-lg-12">
-                                <input type="text" name="txt_user" class="form-control" placeholder="username" value="" />
+                                <input type="text" name="txt_user" class="form-control" placeholder="username" value="" required />
                             </div>
                         </div>
                         <br />
                         <div class="row">
                             <div class="col-lg-12">
-                                <input type="password" name="txt_pwd" class="form-control" placeholder="password" value="" />
+                                <input type="password" name="txt_pwd" class="form-control" placeholder="password" value="" required />
                             </div>
                         </div>
                         <br />
@@ -170,21 +174,37 @@ if (isset($_GET['logout'])) {
                     <form method="post">
                         <div class="row">
                             <div class="col-lg-12">
-                                <input type="text" name="txt_class" class="form-control" placeholder="New Class" />
-                                <br />
-                                <input type="text" name="txt_col1" class="form-control" placeholder="Field 1" />
-                                <input type="text" name="txt_col2" class="form-control" placeholder="Field 2" />
-                                <input type="text" name="txt_col3" class="form-control" placeholder="Field 3" />
-                                <input type="text" name="txt_col4" class="form-control" placeholder="Field 4" />
-                                <br />
-                                <input type="submit" class="btn btn-primary" value="Create" />
+                                <input type="text" name="txt_class" class="form-control" placeholder="New Class" required />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <input type="text" name="txt_col1" class="form-control" placeholder="Field 1" required />                                
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" name="txt_col2" class="form-control" placeholder="Field 2" required />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <input type="text" name="txt_col3" class="form-control" placeholder="Field 3" required /> 
+                            </div>
+                            <div class="col-lg-6">
+                                 <input type="text" name="txt_col4" class="form-control" placeholder="Field 4" required />    
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-lg-12 pull-right" style="text-align: right">
+                                <input type="submit" value="Create" class="btn btn-primary" />
                             </div>
                         </div>
                     </form>
                     <ul class="nav nav-pills nav-stacked">
                         <?php for ($i = 0; $i < count($list); $i++): ?>
                             <?php $obj = $list[$i]; ?>
-                        <li><a href="#"><?php echo $obj->get("classname"); ?></a>
+                            <li><a href="#"><?php echo $obj->get("classname"); ?></a>
                                 <?php echo "<b>Field 1 : </b>" . $obj->get("colA"); ?> | 
                                 <?php echo "<b>Field 2 : </b>" . $obj->get("colB"); ?> | 
                                 <?php echo "<b>Field 3 : </b>" . $obj->get("colC"); ?> | 
