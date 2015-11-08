@@ -105,7 +105,7 @@ if (isset($_GET['logout'])) {
                     <?php echo isset($err) ? "<div class=\"alert alert-info\">" . $err . "</div>" : "" ?>
                 </div>
             </div>
-            <?php if (isset($_SESSION['username'])): ?>
+            <?php if (!isset($_SESSION['username'])): ?>
                 <fieldset>
                     <legend>Login Form</legend>
                     <form method="post">
