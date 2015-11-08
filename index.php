@@ -17,24 +17,24 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['Reg_Form'] == true) {
         $testObject = ParseObject::create("AuthObject");
         $testObject->set("username", $_POST['txt_user']);
         $testObject->set("Password", md5($_POST['txt_pwd']));
-        $testObject->set("Password", md5($_POST['txt_email']));
+        $testObject->set("email", $_POST['txt_email']);
         $testObject->save();
-        echo "Saved !";
+        $err = "<h3>Sign up successfully !</h3>";
     } catch (Exception $ex) {
-        echo $ex->getMessage();
+        $err = $ex->getMessage();
     }
 }
 if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['log_Form'] == true) {
    try{
     $query = new ParseQuery("AuthObject");
-    $query->equalTo("username", "shakirmengrani");
+    $query->equalTo("username", $_POST['txt_user']);
     $data = $query->find();
     for($i =0; $i < count($data);$i++){
         $obj = $data[$i];
-        echo $obj->get("username");
+        $err =  "<h3>" . ( $obj->get("username") == md5($_POST['txt_pwd']) ? "Welcome from Parse.com Api" : "In-valid authentication !") . "</h3>";
     }
    }catch(Exception $ex){
-       echo $ex->getMessage();
+       $err = $ex->getMessage();
    }
 }
 ?>
@@ -46,7 +46,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['log_Form'] == true) {
         <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <div class="container">            
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <?php echo isset($err) ? "<div class=\"alert alert-info\">" . $err . "</div>" : "" ?>
+                </div>
+            </div>
             <fieldset>
                 <legend>Login Form</legend>
                 <form method="post">
