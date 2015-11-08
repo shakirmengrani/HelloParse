@@ -83,6 +83,9 @@ if (isset($_SESSION['username'])) {
     $query->equalTo("username", $_SESSION['txt_user']);
     $list = $query->find();
 }
+if (isset($_GET['logout'])){
+    $_SESSION['username'] = "";
+}
 ?>
 <html>
     <head>
@@ -183,10 +186,10 @@ if (isset($_SESSION['username'])) {
                             <?php $obj = $list[$i]; ?>
                             <li><a href="#"><?php echo $obj->get("classname"); ?></a>
                                 <ul>
-                                    <li><?php echo $obj->get("colA"); ?></li>
-                                    <li><?php echo $obj->get("colB"); ?></li>
-                                    <li><?php echo $obj->get("colC"); ?></li>
-                                    <li><?php echo $obj->get("colD"); ?></li>
+                                    <li><?php echo "<b>Feild 1</b>" . $obj->get("colA"); ?></li>
+                                    <li><?php echo "<b>Feild 2</b>" . $obj->get("colB"); ?></li>
+                                    <li><?php echo "<b>Feild 3</b>" . $obj->get("colC"); ?></li>
+                                    <li><?php echo "<b>Feild 4</b>" . $obj->get("colD"); ?></li>
                                 </ul>
                             </li>
                         <?php endfor; ?>
