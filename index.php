@@ -1,5 +1,5 @@
 <?php
-// error_reporting(0);
+error_reporting(0);
 require './vendor/autoload.php';
 
 use Parse\ParseClient;
@@ -25,13 +25,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['Reg_Form'] == true) {
     }
 }
 if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['log_Form'] == true) {
+   try{
     $query = new ParseQuery("AuthObject");
     $query->equalTo("username", "shakirmengrani");
     $data = $query->find();
     for($i =0; $i < count($data);$i++){
-        echo $data->get("username");
+        $obj = $data[$i];
+        echo $obj->get("username");
     }
-    echo $data->get("username");
+   }catch(Exception $ex){
+       echo $ex->getMessage();
+   }
 }
 ?>
 <html>
