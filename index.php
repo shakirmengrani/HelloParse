@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['txt_class'])) {
     $new = true;
     try {
         $query = new ParseQuery("YogaObject");
-        $query->equalTo("username", $_POST['txt_user']);
+        $query->equalTo("username", $_SESSION['txt_user']);
         $data = $query->find();
         if (count($data) > 0) {
             for ($i = 0; $i < count($data); $i++) {
