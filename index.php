@@ -14,28 +14,35 @@ ParseClient::initialize($app_id, $rest_key, $master_key);
 
 if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['Reg_Form'] == true) {
     try {
-        $testObject = ParseObject::create("AuthObject");
-        $testObject->set("username", $_POST['txt_user']);
-        $testObject->set("Password", md5($_POST['txt_pwd']));
-        $testObject->set("email", $_POST['txt_email']);
-        $testObject->save();
-        $err = "<h3>Sign up successfully !</h3>";
+        $query = new ParseQuery("AuthObject");
+        $query->equalTo("username", $_POST['txt_user']);
+        $data = $query->find();
+        if (count($data) > 0) {
+            $err = "<h3>Already registered !</h3>";
+        } else {
+            $testObject = ParseObject::create("AuthObject");
+            $testObject->set("username", $_POST['txt_user']);
+            $testObject->set("Password", md5($_POST['txt_pwd']));
+            $testObject->set("emailaddress", $_POST['txt_email']);
+            $testObject->save();
+            $err = "<h3>Sign up successfully !</h3>";
+        }
     } catch (Exception $ex) {
         $err = $ex->getMessage();
     }
 }
 if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['log_Form'] == true) {
-   try{
-    $query = new ParseQuery("AuthObject");
-    $query->equalTo("username", $_POST['txt_user']);
-    $data = $query->find();
-    for($i =0; $i < count($data);$i++){
-        $obj = $data[$i];
-        $err =  "<h3>" . ( $obj->get("Password") == md5($_POST['txt_pwd']) ? "Welcome from Parse.com Api" : "In-valid authentication !") . "</h3>";
+    try {
+        $query = new ParseQuery("AuthObject");
+        $query->equalTo("username", $_POST['txt_user']);
+        $data = $query->find();
+        for ($i = 0; $i < count($data); $i++) {
+            $obj = $data[$i];
+            $err = "<h3>" . ( $obj->get("Password") == md5($_POST['txt_pwd']) ? "Welcome from Parse.com Api" : "In-valid authentication !") . "</h3>";
+        }
+    } catch (Exception $ex) {
+        $err = $ex->getMessage();
     }
-   }catch(Exception $ex){
-       $err = $ex->getMessage();
-   }
 }
 ?>
 <html>
