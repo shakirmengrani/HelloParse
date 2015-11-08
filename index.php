@@ -161,13 +161,18 @@ if (isset($_GET['logout'])) {
                 </fieldset>
             <?php else: ?>
                 <style>
-
                     ul li{
-                        margin-top: 100px;
-                        margin-bottom: 100px;
                         border: solid thin #ccc;
                         border-radius: 5px;
                     }
+                    #row1 li{
+                        margin-top: 100px;
+                    }
+
+                    #row2{
+                        margin-bottom: 100px;
+                    }
+
                 </style>
                 <div>
                     <h3 class="pull-left">Yoga List</h3>
@@ -204,7 +209,7 @@ if (isset($_GET['logout'])) {
                     </form>
                     <h2>Example 1</h2>
                     <hr />
-                    <ul class="row">
+                    <ul class="row" id="row1">
                         <?php for ($i = 0; $i < count($list); $i++): ?>
                             <?php $obj = $list[$i]; ?>
                             <li class="thumbnail col-lg-3"><h3><a href="#"><?php echo $obj->get("classname"); ?></a></h3>
@@ -217,7 +222,7 @@ if (isset($_GET['logout'])) {
                     </ul>
                     <h2>Example 2</h2>
                     <hr />
-                    <ul class="nav nav-pills nav-stacked">
+                    <ul class="nav nav-pills nav-stacked" id="row2">
                         <?php for ($i = 0; $i < count($list); $i++): ?>
                             <?php $obj = $list[$i]; ?>
                             <li><a href="#"><?php echo $obj->get("classname"); ?></a></li>
