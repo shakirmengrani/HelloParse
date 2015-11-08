@@ -83,7 +83,7 @@ if (isset($_SESSION['username'])) {
     $query->equalTo("username", $_SESSION['username']);
     $list = $query->find();
 }
-if (isset($_GET['logout'])){
+if (isset($_GET['logout'])) {
     $_SESSION['username'] = "";
 }
 ?>
@@ -185,12 +185,11 @@ if (isset($_GET['logout'])){
                         <?php for ($i = 0; $i < count($list); $i++): ?>
                             <?php $obj = $list[$i]; ?>
                             <li><a href="#"><?php echo $obj->get("classname"); ?></a>
-                                <ul>
-                                    <li><?php echo "<b>Feild 1</b>" . $obj->get("colA"); ?></li>
-                                    <li><?php echo "<b>Feild 2</b>" . $obj->get("colB"); ?></li>
-                                    <li><?php echo "<b>Feild 3</b>" . $obj->get("colC"); ?></li>
-                                    <li><?php echo "<b>Feild 4</b>" . $obj->get("colD"); ?></li>
-                                </ul>
+                                <?php echo "<b>Field 1 : </b>" . $obj->get("colA"); ?> | 
+                                <?php echo "<b>Field 2 : </b>" . $obj->get("colB"); ?> | 
+                                <?php echo "<b>Field 3 : </b>" . $obj->get("colC"); ?> | 
+                                <?php echo "<b>Field 4 : </b>" . $obj->get("colD"); ?>
+
                             </li>
                         <?php endfor; ?>
                     </ul>
