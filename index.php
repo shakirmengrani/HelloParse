@@ -215,6 +215,7 @@ if (isset($_GET['logout'])) {
                         <?php for ($i = 0; $i < count($list); $i++): ?>
                             <?php $obj = $list[$i]; ?>
                             <li class="thumbnail col-lg-3"><h3><a href="#"><?php echo $obj->get("classname"); ?></a></h3>
+                                <img src="http://placehold.it/200" />
                                 <?php echo "<b>Field 1 : </b>" . $obj->get("colA"); ?> | 
                                 <?php echo "<b>Field 2 : </b>" . $obj->get("colB"); ?> <br />
                                 <?php echo "<b>Field 3 : </b>" . $obj->get("colC"); ?> | 
